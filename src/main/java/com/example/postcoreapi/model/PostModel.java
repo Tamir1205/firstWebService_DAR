@@ -11,22 +11,21 @@ import javax.validation.constraints.NotNull;
 @NoArgsConstructor
 @Data
 public class PostModel {
-//    private static String template="post-core-api is working";
+    @NotNull
     private String postId;
-    @NotNull(message = "postId cannot be null")
+    @NotNull
     private String clientId;
     @NotNull
     private String postRecepientId;
-    @NotNull (message = " Recipient id cannot be null")
+
+    @NotNull
     private String postItem;
     private String status;
-    @NotNull (message = "First name of sender cannot be null")
-    private String firstNameSender;
-    @NotNull (message = "Last name of sender cannot be null")
-    private String lastNameSender;
-    @NotNull
-    @Email(message = "Incorrect email")
-    private String emailOfSender;
     private String firstNameRecepient;
     private String lastNameRecepient;
+    @NotNull(message = "Email cannot be empty")
+    @Email(message = "Incorrect email")
+    private String emailOfRecepient;
+    @NotNull
+    private String pointOfDestination;
 }

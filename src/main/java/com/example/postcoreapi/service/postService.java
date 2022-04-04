@@ -10,5 +10,4 @@ public interface postService {
     PostModel updatePost(String postId,PostModel postModel);
     PostModel getPostById(String postId);
     List<PostModel> getAllPosts();
-//    PostModel checking(String template);
 }

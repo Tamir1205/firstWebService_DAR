@@ -11,22 +11,25 @@ import java.util.UUID;
 public class PostServiceImplementation implements postService{
     private static HashMap<String, PostModel> PostMap=new HashMap<>();
     static {
-        PostModel firstPost=new PostModel(UUID.randomUUID().toString(),UUID.randomUUID().toString(),
-                UUID.randomUUID().toString(),"Adidas T-shirt","On the way",
+        PostModel firstPost=new PostModel(UUID.randomUUID().toString(),
+                "be6e2e90-967e-48dc-9b7b-23f38921dd68",
+                "84f273a2-f62f-4940-ba68-b0af64088f65",
+                "Adidas T-shirt",
+                "On the way",
+                "Aldiyar","Shabdarov",
+                "isatay@gmail.com",
+                "Astana a.k.a Nur-Sultan");
+
+        PostModel secondPost=new PostModel(UUID.randomUUID().toString(),
+                "84f273a2-f62f-4940-ba68-b0af64088f65",
+                "be6e2e90-967e-48dc-9b7b-23f38921dd68",
+                "Nike sneakers",
+                "On the way",
                 "Tamirlan","Shiderbayev",
-                "tamirlan@gmail.com","Madiyar","Maripbekov");
-        PostModel secondPost=new PostModel(UUID.randomUUID().toString(),UUID.randomUUID().toString(),
-                UUID.randomUUID().toString(),"Nike sneakers","On the way",
-                "Tamirlan","Shiderbayev",
-                "tamirlan@gmail.com","Dimash","Sayatov");
-        PostModel thirdPost=new PostModel(UUID.randomUUID().toString(),UUID.randomUUID().toString(),
-                UUID.randomUUID().toString(),"Reebok sport suit","going to stock",
-                "Aldiyar","Abenov",
-                "aldik@gmail.com","Kayrat","Kerenov");
+                "tamirlan@gmail.com",
+                "Almaty");
         PostMap.put(firstPost.getPostId(),firstPost);
         PostMap.put(secondPost.getPostId(),secondPost);
-        PostMap.put(thirdPost.getPostId(),thirdPost);
-
     }
 
     @Override
@@ -57,15 +60,7 @@ public class PostServiceImplementation implements postService{
         return new ArrayList<>(PostMap.values());
     }
 
-//    @Override
-//    public String checking(String template) {
-//        return ;
-//    }
 //
-//    @Override
-//    public String checking(String template) {
-//        return template;
-//    }
 
 
 }
