@@ -8,7 +8,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.UUID;
 @Service
-public class PostServiceImplementation implements postService{
+public class PostServiceImplOld implements postServiceOld{
     private static HashMap<String, PostModel> PostMap=new HashMap<>();
     static {
         PostModel firstPost=new PostModel(UUID.randomUUID().toString(),

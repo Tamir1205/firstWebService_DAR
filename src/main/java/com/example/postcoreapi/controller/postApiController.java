@@ -1,54 +1,48 @@
 package com.example.postcoreapi.controller;
 
-import com.example.postcoreapi.model.PostModel;
-import com.example.postcoreapi.service.postService;
-import org.springframework.core.env.Environment;
+import com.example.postcoreapi.model.PostRequest;
+import com.example.postcoreapi.model.PostResponse;
+import com.example.postcoreapi.service.PostService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.Valid;
 import java.util.List;
 
 @RestController
 @RequestMapping("/post")
 public class postApiController {
-    private final Environment env;
+    private final PostService postService;
 
-    private final postService postService;
-
-    public postApiController(Environment env, com.example.postcoreapi.service.postService postService) {
-        this.env = env;
+    public postApiController(PostService postService) {
         this.postService = postService;
     }
 
     @PostMapping
-    public PostModel createPost(@Valid @RequestBody PostModel postModel) {
-        return postService.createPost(postModel);
+    public PostResponse createPost(@RequestBody  PostRequest postRequest){
+        return postService.createPost(postRequest);
     }
-
-    @DeleteMapping("/{postId}")
-    public PostModel deletePost(@PathVariable String postId) {
-        return postService.deletePost(postId);
+    @PutMapping
+    public PostResponse updatePost(@RequestParam String postId, @RequestBody PostRequest postRequest){
+        postRequest.setPostId(postId);
+        return postService.updatePost(postRequest);
     }
-
-    @PutMapping("/{postId}")
-    public PostModel updatePost(@PathVariable String postId, @Valid @RequestBody PostModel postModel) {
-        return postService.updatePost(postId, postModel);
-    }
-
-    @GetMapping("/{postId}")
-    public PostModel getPostById(@PathVariable String postId) {
+    @GetMapping
+    public PostResponse getPostById(@RequestParam String postId){
         return postService.getPostById(postId);
     }
-
+    @GetMapping("/{clientId}")
+    public List<PostResponse> getPostsByClientId(@PathVariable String clientId){
+        return postService.getPostsByClientId(clientId);
+    }
     @GetMapping("/all")
-    public List<PostModel> getAllPosts() {
+    public List<PostResponse> getAllPosts(){
         return postService.getAllPosts();
     }
 
-    @GetMapping("/check")
-    public String postCheck() {
-        return "it is working at " + env.getProperty("local.server.port");
+
+
+    @DeleteMapping
+    public void deletePostById(@RequestParam String postId){
+        postService.deletePostById(postId);
     }
-
-
 }
